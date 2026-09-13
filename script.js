@@ -1,386 +1,107 @@
-/* =========================================================
-   BLACK FYR3 SYSTEMS
-   Main JavaScript
-   ========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* ---------------------------------------------------------
-     1. HEADER / NAVIGATION
-     --------------------------------------------------------- */
-
-  const header = document.querySelector("header");
-  const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector("nav");
-
-  window.addEventListener("scroll", () => {
-    if (!header) return;
-
-    if (window.scrollY > 40) {
-      header.classList.add("scrolled");
-    } else {
-      header.classList.remove("scrolled");
-    }
-  });
-
-  if (navToggle && nav) {
-    navToggle.addEventListener("click", () => {
-      nav.classList.toggle("active");
-      navToggle.classList.toggle("active");
-    });
-  }
-
-  /* Close mobile navigation after selecting a link */
-
-  document.querySelectorAll("nav a").forEach(link => {
-    link.addEventListener("click", () => {
-      if (nav) nav.classList.remove("active");
-      if (navToggle) navToggle.classList.remove("active");
-    });
-  });
-
-
-  /* ---------------------------------------------------------
-     2. SMOOTH SCROLLING
-     --------------------------------------------------------- */
-
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (event) {
-
-      const targetID = this.getAttribute("href");
-
-      if (!targetID || targetID === "#") return;
-
-      const target = document.querySelector(targetID);
-
-      if (target) {
-        event.preventDefault();
-
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     3. SCROLL REVEAL
-     --------------------------------------------------------- */
-
-  const revealElements = document.querySelectorAll(
-    ".reveal, .fade-in, .project-card, .service-card, .problem-card, .stat, section"
-  );
-
-  const revealObserver = new IntersectionObserver(
-    (entries, observer) => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          entry.target.classList.add("visible");
-
-          observer.unobserve(entry.target);
-
-        }
-
-      });
-
-    },
-    {
-      threshold: 0.12
-    }
-  );
-
-  revealElements.forEach(element => {
-    element.classList.add("reveal-ready");
-    revealObserver.observe(element);
-  });
-
-
-  /* ---------------------------------------------------------
-     4. ACTIVE NAVIGATION SECTION
-     --------------------------------------------------------- */
-
-  const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-  const sectionObserver = new IntersectionObserver(
-    entries => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          navLinks.forEach(link => {
-            link.classList.remove("active");
-          });
-
-          const activeLink = document.querySelector(
-            `nav a[href="#${entry.target.id}"]`
-          );
-
-          if (activeLink) {
-            activeLink.classList.add("active");
-          }
-
-        }
-
-      });
-
-    },
-    {
-      rootMargin: "-30% 0px -60% 0px"
-    }
-  );
-
-  sections.forEach(section => {
-    sectionObserver.observe(section);
-  });
-
-
-  /* ---------------------------------------------------------
-     5. NUMBER COUNTERS
-     --------------------------------------------------------- */
-
-  const counters = document.querySelectorAll("[data-counter]");
-
-  const counterObserver = new IntersectionObserver(
-    entries => {
-
-      entries.forEach(entry => {
-
-        if (!entry.isIntersecting) return;
-
-        const counter = entry.target;
-        const target = parseInt(counter.dataset.counter, 10);
-
-        if (isNaN(target)) return;
-
-        let current = 0;
-        const duration = 1400;
-        const increment = Math.max(1, target / (duration / 16));
-
-        const updateCounter = () => {
-
-          current += increment;
-
-          if (current >= target) {
-            counter.textContent = target.toLocaleString();
-            return;
-          }
-
-          counter.textContent = Math.floor(current).toLocaleString();
-
-          requestAnimationFrame(updateCounter);
-        };
-
-        updateCounter();
-
-        counterObserver.unobserve(counter);
-      });
-
-    },
-    {
-      threshold: 0.7
-    }
-  );
-
-  counters.forEach(counter => {
-    counterObserver.observe(counter);
-  });
-
-
-  /* ---------------------------------------------------------
-     6. CARD HOVER INTERACTION
-     --------------------------------------------------------- */
-
-  const cards = document.querySelectorAll(
-    ".service-card, .project-card, .problem-card, .feature-card"
-  );
-
-  cards.forEach(card => {
-
-    card.addEventListener("mousemove", event => {
-
-      const rect = card.getBoundingClientRect();
-
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
-
-      const rotateX =
-        ((y / rect.height) - 0.5) * -4;
-
-      const rotateY =
-        ((x / rect.width) - 0.5) * 4;
-
-      card.style.transform =
-        `perspective(800px)
-         rotateX(${rotateX}deg)
-         rotateY(${rotateY}deg)
-         translateY(-4px)`;
-
-    });
-
-    card.addEventListener("mouseleave", () => {
-      card.style.transform = "";
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     7. HERO PARALLAX
-     --------------------------------------------------------- */
-
-  const hero = document.querySelector(".hero");
-  const heroContent = document.querySelector(".hero-content");
-
-  window.addEventListener("scroll", () => {
-
-    if (!hero || !heroContent) return;
-
-    const scrollPosition = window.scrollY;
-
-    if (scrollPosition < window.innerHeight) {
-
-      heroContent.style.transform =
-        `translateY(${scrollPosition * 0.12}px)`;
-
-      heroContent.style.opacity =
-        Math.max(0, 1 - scrollPosition / 700);
-
-    }
-
-  });
-
-
-  /* ---------------------------------------------------------
-     8. SYSTEM STATUS
-     --------------------------------------------------------- */
-
-  const statusElements =
-    document.querySelectorAll("[data-system-status]");
-
-  statusElements.forEach(status => {
-
-    status.textContent = "SYSTEMS OPERATIONAL";
-    status.classList.add("operational");
-
-  });
-
-
-  /* ---------------------------------------------------------
-     9. CURRENT YEAR
-     --------------------------------------------------------- */
-
-  document.querySelectorAll("[data-year]").forEach(element => {
-    element.textContent = new Date().getFullYear();
-  });
-
-
-  /* ---------------------------------------------------------
-     10. CONTACT FORM
-     --------------------------------------------------------- */
-
-  const contactForm = document.querySelector("#contact-form");
-
-  if (contactForm) {
-
-    contactForm.addEventListener("submit", event => {
-
-      const submitButton =
-        contactForm.querySelector('button[type="submit"]');
-
-      if (submitButton) {
-
-        submitButton.textContent = "TRANSMITTING...";
-
-        submitButton.disabled = true;
-
-        setTimeout(() => {
-
-          submitButton.textContent = "MESSAGE READY";
-
-        }, 1200);
-
-      }
-
-    });
-
-  }
-
-
-  /* ---------------------------------------------------------
-     11. BUTTON MICRO-INTERACTIONS
-     --------------------------------------------------------- */
-
-  document.querySelectorAll("button, .btn").forEach(button => {
-
-    button.addEventListener("mousedown", () => {
-      button.classList.add("pressed");
-    });
-
-    button.addEventListener("mouseup", () => {
-      button.classList.remove("pressed");
-    });
-
-    button.addEventListener("mouseleave", () => {
-      button.classList.remove("pressed");
-    });
-
-  });
-
-
-  /* ---------------------------------------------------------
-     12. BACK TO TOP
-     --------------------------------------------------------- */
-
-  const backToTop = document.querySelector(".back-to-top");
-
-  if (backToTop) {
-
-    window.addEventListener("scroll", () => {
-
-      if (window.scrollY > 700) {
-        backToTop.classList.add("show");
-      } else {
-        backToTop.classList.remove("show");
-      }
-
-    });
-
-    backToTop.addEventListener("click", () => {
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    });
-
-  }
-
-
-  /* ---------------------------------------------------------
-     13. BLACKFYRE SYSTEM INITIALIZATION
-     --------------------------------------------------------- */
-
-  document.body.classList.add("blackfyre-loaded");
-
-  console.log(
-    "%c BLACK FYR3 SYSTEMS ",
-    "background:#ff7800;color:#000;font-weight:bold;padding:8px 12px;"
-  );
-
-  console.log(
-    "%cSystems initialized successfully.",
-    "color:#ff7800;font-weight:bold;"
-  );
-
+const loader=document.getElementById('loader');
+window.addEventListener('load',()=>setTimeout(()=>loader.classList.add('done'),1900));
+document.getElementById('year').textContent=new Date().getFullYear();
+
+const header=document.querySelector('.site-header');
+const glow=document.querySelector('.cursor-glow');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>40),{passive:true});
+window.addEventListener('pointermove',e=>{
+  glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px';
 });
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(Math.min(i%4,3)*70)+'ms';
+  observer.observe(el);
+});
+
+// Original MAGYRON particle field: a slowly evolving 3D research core.
+const canvas=document.getElementById('labCanvas');
+let renderer,scene,camera,points,outerPoints,ringGroup;
+const mouse={x:0,y:0,tx:0,ty:0};
+let targetScroll=0, smoothScroll=0;
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function fibonacciSphere(n,r){
+  const arr=new Float32Array(n*3), phi=Math.PI*(3-Math.sqrt(5));
+  for(let i=0;i<n;i++){
+    const y=1-(i/(n-1))*2;
+    const rr=Math.sqrt(Math.max(0,1-y*y));
+    const t=phi*i;
+    arr[i*3]=Math.cos(t)*rr*r;
+    arr[i*3+1]=y*r;
+    arr[i*3+2]=Math.sin(t)*rr*r;
+  }
+  return arr;
+}
+function initLab(){
+  if(!window.THREE)return;
+  renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+  renderer.setSize(innerWidth,innerHeight);
+  scene=new THREE.Scene();
+  camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);
+  camera.position.set(0,0,8);
+
+  const count=innerWidth<700?4200:9000;
+  const base=fibonacciSphere(count,2.55);
+  const positions=new Float32Array(base.length);
+  const colors=new Float32Array(count*3);
+  const sizes=new Float32Array(count);
+  const c1=new THREE.Color('#35e7ff'), c2=new THREE.Color('#8c6cff');
+  for(let i=0;i<count;i++){
+    positions[i*3]=base[i*3]; positions[i*3+1]=base[i*3+1]; positions[i*3+2]=base[i*3+2];
+    const mix=(base[i*1+1]/5)+.5; // deterministic field variation
+    const c=c1.clone().lerp(c2,Math.max(0,Math.min(1,mix)));
+    colors[i*3]=c.r;colors[i*3+1]=c.g;colors[i*3+2]=c.b;sizes[i]=.65+Math.random()*1.7;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(positions,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(colors,3));
+  geo.setAttribute('size',new THREE.BufferAttribute(sizes,1));
+  const mat=new THREE.PointsMaterial({size:.025,vertexColors:true,transparent:true,opacity:.7,blending:THREE.AdditiveBlending,depthWrite:false});
+  points=new THREE.Points(geo,mat);scene.add(points);
+
+  const outerGeo=new THREE.BufferGeometry();
+  outerGeo.setAttribute('position',new THREE.BufferAttribute(fibonacciSphere(Math.floor(count*.35),3.15),3));
+  const outerMat=new THREE.PointsMaterial({color:c1,size:.018,transparent:true,opacity:.25,blending:THREE.AdditiveBlending,depthWrite:false});
+  outerPoints=new THREE.Points(outerGeo,outerMat);scene.add(outerPoints);
+
+  ringGroup=new THREE.Group();
+  [[3.1,.22,.08],[3.45,.16,.12],[2.85,.12,-.14]].forEach((d,i)=>{
+    const g=new THREE.TorusGeometry(d[0],d[1],8,160);
+    const m=new THREE.MeshBasicMaterial({color:i===1?0x8c6cff:0x35e7ff,transparent:true,opacity:.14,blending:THREE.AdditiveBlending});
+    const mesh=new THREE.Mesh(g,m);mesh.rotation.x=d[2];mesh.rotation.z=i*.8;ringGroup.add(mesh);
+  });
+  scene.add(ringGroup);
+  addEventListener('resize',resize);
+  addEventListener('pointermove',e=>{mouse.tx=(e.clientX/innerWidth-.5);mouse.ty=(e.clientY/innerHeight-.5)});
+  addEventListener('scroll',()=>targetScroll=scrollY/(document.body.scrollHeight-innerHeight),{passive:true});
+  animate();
+}
+function resize(){if(!renderer)return;renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+function animate(){
+  requestAnimationFrame(animate);
+  if(reduced){renderer.render(scene,camera);return}
+  mouse.x+=(mouse.tx-mouse.x)*.035;mouse.y+=(mouse.ty-mouse.y)*.035;
+  smoothScroll+=(targetScroll-smoothScroll)*.045;
+  const t=performance.now()*.00025;
+  points.rotation.y=t*.55+mouse.x*.3;
+  points.rotation.x=Math.sin(t*.7)*.12+mouse.y*.18;
+  outerPoints.rotation.y=-t*.25-mouse.x*.2;
+  outerPoints.rotation.x=-mouse.y*.1;
+  ringGroup.rotation.y=t*.35+mouse.x*.15;
+  ringGroup.rotation.x=.3+mouse.y*.1;
+  const heroFade=Math.max(0,1-smoothScroll*3.1);
+  points.material.opacity=.18+.52*heroFade;
+  outerPoints.material.opacity=.06+.2*heroFade;
+  ringGroup.visible=heroFade>.015;
+  const targetZ=8-smoothScroll*1.2;
+  camera.position.z+=(targetZ-camera.position.z)*.03;
+  camera.position.x+=((-mouse.x*.45)-camera.position.x)*.025;
+  camera.position.y+=((mouse.y*.3)-camera.position.y)*.025;
+  renderer.render(scene,camera);
+}
+initLab();
