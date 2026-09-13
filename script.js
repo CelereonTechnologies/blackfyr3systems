@@ -17,7 +17,7 @@ document.querySelectorAll('.reveal').forEach((el,i)=>{
   observer.observe(el);
 });
 
-// Original MAGYRON particle field: a slowly evolving 3D research core.
+// Original BL4CK FYR3 MAGYR0N particle field: a slowly evolving 3D research core.
 const canvas=document.getElementById('labCanvas');
 let renderer,scene,camera,points,outerPoints,ringGroup;
 const mouse={x:0,y:0,tx:0,ty:0};
