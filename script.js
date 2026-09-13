@@ -105,3 +105,56 @@ function animate(){
   renderer.render(scene,camera);
 }
 initLab();
+
+// Cinematic meteor field: sparse shooting stars crossing the research environment.
+const meteorCanvas=document.getElementById('meteorCanvas');
+const meteorCtx=meteorCanvas.getContext('2d');
+let meteors=[], meteorLast=0, meteorNext=1800;
+
+function resizeMeteors(){
+  const d=Math.min(devicePixelRatio,1.7);
+  meteorCanvas.width=Math.floor(innerWidth*d);
+  meteorCanvas.height=Math.floor(innerHeight*d);
+  meteorCanvas.style.width=innerWidth+'px';
+  meteorCanvas.style.height=innerHeight+'px';
+  meteorCtx.setTransform(d,0,0,d,0,0);
+}
+function spawnMeteor(){
+  const x=innerWidth*(.42+Math.random()*.65);
+  const y=innerHeight*(-.08+Math.random()*.38);
+  const speed=9+Math.random()*11;
+  const angle=Math.PI*(.66+Math.random()*.12);
+  meteors.push({
+    x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,
+    life:0,max:42+Math.random()*38,length:80+Math.random()*130,
+    width:.7+Math.random()*1.1,hue:Math.random()<.65?'cyan':'violet'
+  });
+}
+function drawMeteors(now){
+  requestAnimationFrame(drawMeteors);
+  if(reduced)return;
+  if(now-meteorLast>meteorNext){
+    spawnMeteor(); meteorLast=now; meteorNext=1800+Math.random()*4800;
+  }
+  meteorCtx.clearRect(0,0,innerWidth,innerHeight);
+  for(let i=meteors.length-1;i>=0;i--){
+    const m=meteors[i]; m.x+=m.vx; m.y+=m.vy; m.life++;
+    const progress=m.life/m.max, alpha=Math.sin(Math.PI*progress)*.9;
+    const mag=Math.hypot(m.vx,m.vy), ux=m.vx/mag, uy=m.vy/mag;
+    const tailX=m.x-ux*m.length, tailY=m.y-uy*m.length;
+    const grad=meteorCtx.createLinearGradient(m.x,m.y,tailX,tailY);
+    const c=m.hue==='cyan'?'53,231,255':'140,108,255';
+    grad.addColorStop(0,`rgba(255,255,255,${alpha})`);
+    grad.addColorStop(.12,`rgba(${c},${alpha*.9})`);
+    grad.addColorStop(1,`rgba(${c},0)`);
+    meteorCtx.strokeStyle=grad; meteorCtx.lineWidth=m.width;
+    meteorCtx.beginPath(); meteorCtx.moveTo(m.x,m.y); meteorCtx.lineTo(tailX,tailY); meteorCtx.stroke();
+    meteorCtx.fillStyle=`rgba(255,255,255,${alpha})`;
+    meteorCtx.shadowBlur=12; meteorCtx.shadowColor=m.hue==='cyan'?'#35e7ff':'#8c6cff';
+    meteorCtx.beginPath(); meteorCtx.arc(m.x,m.y,1.35,0,Math.PI*2); meteorCtx.fill(); meteorCtx.shadowBlur=0;
+    if(m.life>m.max||m.x<-250||m.y>innerHeight+250)meteors.splice(i,1);
+  }
+}
+addEventListener('resize',resizeMeteors);
+resizeMeteors();
+if(!reduced)requestAnimationFrame(drawMeteors);
