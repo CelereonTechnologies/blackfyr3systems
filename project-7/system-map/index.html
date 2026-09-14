@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROJECT 07 — SYSTEM MAP | BL4CK FYR3 MAGYR0N</title>
+<link rel="stylesheet" href="system-map.css">
+</head>
+<body>
+<div class="map-shell">
+  <header class="map-header">
+    <a href="/project-7/" class="back">← PROJECT 07</a>
+    <div class="brand">BL4CK FYR3 MAGYR0N</div>
+    <div class="status"><span></span> RESEARCH SYSTEM ONLINE</div>
+  </header>
+
+  <main>
+    <section class="intro">
+      <div class="eyebrow">PROJECT 07 / PHYSIOLOGICAL SIGNAL INTELLIGENCE</div>
+      <h1>INTERACTIVE<br><em>SYSTEM MAP</em></h1>
+      <p>Trace the research architecture from the original Lab 07 measurement through signal processing, computational modeling, classification and validation.</p>
+    </section>
+
+    <section class="system-map" aria-label="Project 07 interactive systems map">
+      <div class="map-grid"></div>
+      <div class="scanline"></div>
+      <svg class="connections" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true">
+        <path id="path-acquire" d="M500 575 C350 500 265 430 175 330"/>
+        <path id="path-clean" d="M500 575 C410 485 365 405 330 280"/>
+        <path id="path-detect" d="M500 575 C470 470 455 385 455 245"/>
+        <path id="path-measure" d="M500 575 C530 470 545 385 545 245"/>
+        <path id="path-model" d="M500 575 C590 485 635 405 670 280"/>
+        <path id="path-classify" d="M500 575 C650 500 735 430 825 330"/>
+        <path id="path-validate" d="M500 575 C500 485 500 410 500 350"/>
+      </svg>
+
+      <div class="core" data-node="project">
+        <div class="core-ring r1"></div><div class="core-ring r2"></div>
+        <div class="core-orbit o1"></div><div class="core-orbit o2"></div>
+        <div class="core-label">PROJECT 07</div>
+        <strong>PHYSIOLOGICAL<br>SIGNAL<br>INTELLIGENCE</strong>
+        <small>ONGOING RESEARCH</small>
+      </div>
+
+      <button class="node node-01" data-node="acquire"><span>01</span><b>ACQUIRE</b><small>Signal acquisition</small></button>
+      <button class="node node-02" data-node="clean"><span>02</span><b>CLEAN</b><small>Noise & artifacts</small></button>
+      <button class="node node-03" data-node="detect"><span>03</span><b>DETECT</b><small>Signal events</small></button>
+      <button class="node node-04" data-node="measure"><span>04</span><b>MEASURE</b><small>R-R intervals</small></button>
+      <button class="node node-05" data-node="model"><span>05</span><b>MODEL</b><small>Signal representation</small></button>
+      <button class="node node-06" data-node="classify"><span>06</span><b>CLASSIFY</b><small>Pattern analysis</small></button>
+      <button class="node node-07" data-node="validate"><span>07</span><b>VALIDATE</b><small>Research validation</small></button>
+
+      <div class="map-hud hud-a">SYS / P07 / 001</div>
+      <div class="map-hud hud-b">SIGNAL → KNOWLEDGE</div>
+      <div class="map-hud hud-c">CLICK NODE TO INSPECT</div>
+    </section>
+
+    <section class="detail-panel" id="detailPanel">
+      <div class="detail-top">
+        <span id="detailCode">SYSTEM CORE</span>
+        <button id="closeDetail" aria-label="Close detail">×</button>
+      </div>
+      <div class="detail-content">
+        <div class="detail-index" id="detailIndex">P07</div>
+        <div>
+          <div class="eyebrow" id="detailEyebrow">PROJECT 07</div>
+          <h2 id="detailTitle">PHYSIOLOGICAL SIGNAL INTELLIGENCE</h2>
+          <p id="detailText">Select a research node to inspect its role in the Project 07 architecture.</p>
+          <div class="detail-grid">
+            <div><label>STATUS</label><strong id="detailStatus">ONGOING RESEARCH</strong></div>
+            <div><label>CONNECTION</label><strong id="detailNext">SYSTEM CORE</strong></div>
+          </div>
+          <div class="signal-demo" id="signalDemo"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="foundation">
+      <div class="eyebrow">ARCHITECTURE / FOUNDATION</div>
+      <h2>FROM LABORATORY MEASUREMENT<br>TO FUTURE TECHNOLOGY.</h2>
+      <p>Lab 07 provides the historical experimental foundation: EKG acquisition, R-R interval measurement, exercise response and statistical analysis. Project 07 extends that foundation into a broader research architecture for physiological signal processing and computational analysis.</p>
+      <a href="/project-7/lab-7/" class="archive-link">OPEN LAB 07 ARCHIVE <span>↗</span></a>
+    </section>
+
+    <section class="future">
+      <div class="eyebrow">SYSTEM OUTPUT / FUTURE RESEARCH</div>
+      <div class="future-grid">
+        <div>WEARABLE<br>SENSORS</div>
+        <div>EDGE<br>COMPUTING</div>
+        <div>MULTI-SENSOR<br>SYSTEMS</div>
+        <div>REAL-TIME<br>SIGNAL INTELLIGENCE</div>
+      </div>
+      <p class="disclaimer">Research prototypes are not clinical diagnostic systems. Future applications require additional validation, appropriate datasets, privacy safeguards and domain-specific review.</p>
+    </section>
+  </main>
+</div>
+<script src="system-map.js"></script>
+</body>
+</html>
 
