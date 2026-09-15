@@ -1158,3 +1158,722 @@ section {
         animation: none !important;
     }
 }
+
+/* =========================================================
+   MERGED SIGNAL CLASSIFICATION
+========================================================= */
+
+.signal-classification,
+.lab-data,
+.research-questions,
+.embedded-system-map {
+    padding: 130px 6vw;
+    border-top: 1px solid var(--line);
+}
+
+.classification-header,
+.lab-data-header,
+.map-heading {
+    display: grid;
+    grid-template-columns: 1fr 0.8fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 55px;
+}
+
+.classification-label {
+    color: var(--cyan);
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    margin-bottom: 18px;
+}
+
+.classification-header h2,
+.lab-data-header h2,
+.map-heading h2 {
+    font-size: clamp(2.4rem, 5vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+}
+
+.classification-header > p,
+.lab-data-header > p,
+.map-heading > p {
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 650px;
+}
+
+.classification-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.signal-card,
+.data-panel,
+.lab-table-wrap {
+    border: 1px solid var(--line);
+    background: linear-gradient(145deg, rgba(12,20,29,.94), rgba(5,9,14,.94));
+}
+
+.signal-card {
+    padding: 26px;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+    transition: transform .3s ease, border-color .3s ease;
+}
+
+.signal-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(53,231,255,.35);
+}
+
+.signal-card-top,
+.panel-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--dim);
+    font-family: "Courier New", monospace;
+    font-size: .52rem;
+    letter-spacing: .15em;
+}
+
+.signal-state {
+    color: var(--violet);
+}
+
+.signal-state.normal {
+    color: var(--cyan);
+}
+
+.mini-ecg {
+    height: 150px;
+    margin: 38px -10px 28px;
+    border-top: 1px solid rgba(120,170,195,.08);
+    border-bottom: 1px solid rgba(120,170,195,.08);
+    background:
+        linear-gradient(rgba(120,170,195,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,170,195,.055) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.mini-ecg svg,
+.archive-wave svg {
+    width: 100%;
+    height: 100%;
+}
+
+.mini-ecg path,
+.archive-wave path {
+    fill: none;
+    stroke: var(--cyan);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 5px rgba(53,231,255,.65));
+}
+
+.signal-card h3 {
+    font-size: 1.1rem;
+    letter-spacing: .13em;
+}
+
+.signal-card p {
+    margin-top: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+    font-size: .84rem;
+}
+
+.signal-metrics {
+    position: absolute;
+    left: 26px;
+    right: 26px;
+    bottom: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 20px;
+    border-top: 1px solid var(--line);
+    padding-top: 18px;
+}
+
+.signal-metrics span {
+    color: var(--dim);
+    font-size: .48rem;
+    letter-spacing: .16em;
+}
+
+.signal-metrics strong {
+    font-family: "Courier New", monospace;
+    font-size: .55rem;
+    color: #cfe3ed;
+    text-align: right;
+}
+
+.classification-note {
+    margin-top: 20px;
+    color: var(--dim);
+    font-size: .56rem;
+    line-height: 1.7;
+    font-family: "Courier New", monospace;
+}
+
+/* =========================================================
+   LAB 07 DATA
+========================================================= */
+
+.lab-method-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line);
+    margin-bottom: 12px;
+}
+
+.lab-method-strip div {
+    padding: 22px;
+    border-right: 1px solid var(--line);
+}
+
+.lab-method-strip div:last-child {
+    border-right: 0;
+}
+
+.lab-method-strip span {
+    display: block;
+    color: var(--dim);
+    font-size: .5rem;
+    letter-spacing: .18em;
+}
+
+.lab-method-strip strong {
+    display: block;
+    margin-top: 8px;
+    color: #dcebf4;
+    font-family: "Courier New", monospace;
+    font-size: .62rem;
+    letter-spacing: .08em;
+}
+
+.data-visual-grid {
+    display: grid;
+    grid-template-columns: 1.35fr .65fr;
+    gap: 12px;
+}
+
+.data-panel {
+    padding: 25px;
+}
+
+.waveform-compare {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-top: 30px;
+}
+
+.waveform-compare small {
+    color: var(--dim);
+    font-family: "Courier New", monospace;
+    font-size: .5rem;
+    letter-spacing: .16em;
+}
+
+.archive-wave {
+    height: 150px;
+    margin: 10px 0;
+    background:
+        linear-gradient(rgba(120,170,195,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,170,195,.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    border: 1px solid rgba(120,170,195,.08);
+}
+
+.waveform-compare strong {
+    color: #cfe3ed;
+    font-family: "Courier New", monospace;
+    font-size: .58rem;
+}
+
+.chart-caption {
+    margin-top: 25px;
+    color: var(--dim);
+    font-size: .55rem;
+    line-height: 1.7;
+}
+
+.bar-chart {
+    margin-top: 45px;
+}
+
+.bar-row {
+    display: grid;
+    grid-template-columns: 70px 1fr 50px;
+    align-items: center;
+    gap: 10px;
+    margin: 25px 0;
+    font-family: "Courier New", monospace;
+    font-size: .55rem;
+}
+
+.bar-row > span {
+    color: var(--dim);
+}
+
+.bar-row strong {
+    color: var(--cyan);
+    text-align: right;
+}
+
+.bar-track {
+    height: 7px;
+    background: rgba(120,170,195,.08);
+    overflow: hidden;
+}
+
+.bar-track i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyan), var(--violet));
+}
+
+.delta-result {
+    margin-top: 55px;
+    padding-top: 25px;
+    border-top: 1px solid var(--line);
+}
+
+.delta-result span {
+    color: var(--dim);
+    display: block;
+    font-size: .52rem;
+    letter-spacing: .17em;
+}
+
+.delta-result strong {
+    display: block;
+    margin-top: 7px;
+    font-size: 2.3rem;
+    color: var(--text);
+}
+
+.delta-result small {
+    display: block;
+    margin-top: 8px;
+    color: var(--dim);
+    font-size: .52rem;
+}
+
+.lab-table-wrap {
+    margin-top: 12px;
+    padding: 25px;
+    overflow-x: auto;
+}
+
+.lab-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 22px;
+    font-family: "Courier New", monospace;
+    font-size: .57rem;
+}
+
+.lab-table th,
+.lab-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: right;
+    white-space: nowrap;
+}
+
+.lab-table th:first-child,
+.lab-table td:first-child {
+    text-align: left;
+}
+
+.lab-table th {
+    color: var(--dim);
+    font-weight: 400;
+    letter-spacing: .08em;
+}
+
+.lab-table td {
+    color: #cfe3ed;
+}
+
+.lab-table .highlight-row td {
+    color: var(--cyan);
+}
+
+.data-interpretation {
+    display: grid;
+    grid-template-columns: .7fr 1fr;
+    gap: 70px;
+    margin-top: 70px;
+    align-items: start;
+}
+
+.data-interpretation > div {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+}
+
+.interpretation-number {
+    color: var(--cyan);
+    font-family: "Courier New", monospace;
+    font-size: .58rem;
+    letter-spacing: .15em;
+}
+
+.data-interpretation h3 {
+    font-size: 1.2rem;
+    letter-spacing: .13em;
+}
+
+.data-interpretation p {
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+/* =========================================================
+   RESEARCH QUESTIONS
+========================================================= */
+
+.question-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 90px;
+}
+
+.question-layout h2 {
+    font-size: clamp(2.3rem, 5vw, 5rem);
+    line-height: .95;
+    letter-spacing: -.035em;
+}
+
+.question-list > div {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.question-list span {
+    color: var(--cyan);
+    font-family: "Courier New", monospace;
+    font-size: .55rem;
+}
+
+.question-list p {
+    color: #c4d3dd;
+    line-height: 1.7;
+    font-size: .84rem;
+}
+
+.research-boundary {
+    margin-top: 60px;
+    border: 1px solid rgba(139,104,255,.25);
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 30px;
+}
+
+.research-boundary strong {
+    color: var(--violet);
+    font-family: "Courier New", monospace;
+    font-size: .56rem;
+    letter-spacing: .15em;
+}
+
+.research-boundary p {
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: .78rem;
+}
+
+/* =========================================================
+   EMBEDDED SYSTEM MAP
+========================================================= */
+
+.map-core {
+    position: relative;
+    min-height: 680px;
+    border: 1px solid var(--line);
+    background:
+        radial-gradient(circle at center, rgba(53,231,255,.08), transparent 30%),
+        linear-gradient(145deg, rgba(8,15,22,.95), rgba(4,7,11,.98));
+    overflow: hidden;
+}
+
+.map-core::before,
+.map-core::after {
+    content: "";
+    position: absolute;
+    inset: 8%;
+    border: 1px solid rgba(53,231,255,.06);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.map-core::after {
+    inset: 18%;
+    border-color: rgba(139,104,255,.08);
+}
+
+.map-ring {
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(53,231,255,.18);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ring-one {
+    width: 410px;
+    height: 410px;
+    animation: mapSpin 24s linear infinite;
+}
+
+.ring-two {
+    width: 600px;
+    height: 600px;
+    border-color: rgba(139,104,255,.12);
+    animation: mapSpinReverse 34s linear infinite;
+}
+
+.map-node {
+    position: absolute;
+    z-index: 3;
+}
+
+.map-node-center {
+    left: 50%;
+    top: 43%;
+    transform: translate(-50%, -50%);
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 1px solid rgba(53,231,255,.5);
+    background: radial-gradient(circle, rgba(16,35,48,.98), rgba(4,8,13,.98));
+    box-shadow: 0 0 60px rgba(53,231,255,.13), inset 0 0 40px rgba(139,104,255,.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.map-node-center span {
+    color: var(--cyan);
+    font: .5rem "Courier New", monospace;
+    letter-spacing: .2em;
+}
+
+.map-node-center strong {
+    font-size: 4rem;
+    line-height: 1;
+    letter-spacing: -.08em;
+}
+
+.map-node-center small {
+    margin-top: 8px;
+    color: var(--dim);
+    font: .44rem/1.5 "Courier New", monospace;
+    letter-spacing: .12em;
+}
+
+.map-node-stage {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: 1px solid rgba(53,231,255,.35);
+    background: rgba(6,13,20,.96);
+    color: var(--cyan);
+    font: .68rem "Courier New", monospace;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(53,231,255,.07);
+    transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+}
+
+.map-node-stage:hover,
+.map-node-stage.map-selected {
+    background: rgba(53,231,255,.12);
+    box-shadow: 0 0 35px rgba(53,231,255,.2);
+    transform: scale(1.12);
+}
+
+.stage-a { left: 17%; top: 16%; }
+.stage-b { left: 40%; top: 9%; }
+.stage-c { right: 18%; top: 18%; }
+.stage-d { right: 8%; top: 47%; }
+.stage-e { right: 23%; bottom: 12%; }
+.stage-f { left: 39%; bottom: 7%; }
+.stage-g { left: 13%; bottom: 16%; }
+
+.map-future {
+    position: absolute;
+    left: 50%;
+    bottom: 25px;
+    transform: translateX(-50%);
+    text-align: center;
+    color: var(--dim);
+    font: .48rem/1.7 "Courier New", monospace;
+    letter-spacing: .15em;
+}
+
+.map-future strong {
+    display: block;
+    color: #b9d4df;
+    font-size: .56rem;
+}
+
+.map-panel {
+    margin-top: 12px;
+    padding: 25px;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    min-height: 120px;
+    transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+.map-panel-active {
+    border-color: rgba(53,231,255,.28);
+    box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.map-panel span {
+    color: var(--cyan);
+    font: .5rem "Courier New", monospace;
+    letter-spacing: .18em;
+}
+
+.map-panel h3 {
+    margin-top: 8px;
+    font-size: 1.1rem;
+    letter-spacing: .1em;
+}
+
+.map-panel p {
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: .78rem;
+    line-height: 1.7;
+    max-width: 850px;
+}
+
+@keyframes mapSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes mapSpinReverse {
+    from { transform: translate(-50%, -50%) rotate(360deg); }
+    to { transform: translate(-50%, -50%) rotate(0deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ring-one,
+    .ring-two {
+        animation: none;
+    }
+}
+
+@media (max-width: 900px) {
+    .classification-header,
+    .lab-data-header,
+    .map-heading,
+    .question-layout,
+    .data-interpretation {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .classification-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .data-visual-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-method-strip {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .lab-method-strip div:nth-child(2) {
+        border-right: 0;
+    }
+
+    .lab-method-strip div:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+    }
+}
+
+@media (max-width: 700px) {
+    .signal-classification,
+    .lab-data,
+    .research-questions,
+    .embedded-system-map {
+        padding: 90px 20px;
+    }
+
+    .lab-method-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .lab-method-strip div {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .lab-method-strip div:last-child {
+        border-bottom: 0;
+    }
+
+    .research-boundary {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .map-core {
+        min-height: 600px;
+    }
+
+    .map-node-center {
+        width: 145px;
+        height: 145px;
+    }
+
+    .map-node-center strong {
+        font-size: 3rem;
+    }
+
+    .map-node-stage {
+        width: 52px;
+        height: 52px;
+    }
+
+    .ring-one {
+        width: 300px;
+        height: 300px;
+    }
+
+    .ring-two {
+        width: 450px;
+        height: 450px;
+    }
+
+    .stage-a { left: 8%; top: 12%; }
+    .stage-b { left: 38%; top: 7%; }
+    .stage-c { right: 8%; top: 13%; }
+    .stage-d { right: 4%; top: 45%; }
+    .stage-e { right: 12%; bottom: 12%; }
+    .stage-f { left: 37%; bottom: 7%; }
+    .stage-g { left: 6%; bottom: 13%; }
+}
+
