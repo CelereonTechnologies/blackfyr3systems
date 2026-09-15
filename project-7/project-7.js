@@ -657,3 +657,35 @@ setInterval(
     updateSystemClock,
     1000
 );
+
+
+/* =========================================================
+   EMBEDDED PROJECT 7 SYSTEM MAP
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const mapNodes = document.querySelectorAll(".map-node-stage");
+    const mapPanel = document.getElementById("map-panel");
+    const mapTitle = document.getElementById("map-panel-title");
+    const mapCopy = document.getElementById("map-panel-copy");
+    const mapKicker = document.getElementById("map-panel-kicker");
+
+    if (!mapNodes.length || !mapPanel) return;
+
+    mapNodes.forEach(node => {
+        node.addEventListener("click", () => {
+
+            mapNodes.forEach(item => item.classList.remove("map-selected"));
+            node.classList.add("map-selected");
+
+            mapKicker.textContent = "PROJECT 07 / RESEARCH STAGE";
+            mapTitle.textContent = node.dataset.mapTitle || "PROJECT 07";
+            mapCopy.textContent = node.dataset.mapCopy || "";
+
+            mapPanel.classList.add("map-panel-active");
+        });
+    });
+
+});
+
