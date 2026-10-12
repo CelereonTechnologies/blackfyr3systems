@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             index: "01",
             eyebrow: "SIGNAL ACQUISITION",
             title: "ACQUIRE",
-            text: "Capture physiological signals using appropriate instrumentation and controlled experimental procedures. Lab 07 established the EKG acquisition foundation for this research lineage.",
+            text: "Explore acquisition of physiological signals using appropriate instrumentation and documented experimental procedures. Past Research provides context for continued work with recorded EKG data.",
             status: "FOUNDATION",
             next: "02 CLEAN"
         },
@@ -46,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
             index: "04",
             eyebrow: "PHYSIOLOGICAL MEASUREMENT",
             title: "MEASURE",
-            text: "Extract measurable features such as R-R intervals and heart-rate response. Lab 07 calculated heart rate from R-R intervals before and after exercise.",
-            status: "LAB 07 FOUNDATION",
+            text: "Extract descriptive features such as recorded R-R intervals and heart-rate measurements. Past Research includes before-and-after-exercise comparisons; these are descriptive observations, not medical assessments.",
+            status: "PAST RESEARCH",
             next: "05 MODEL"
         },
 
