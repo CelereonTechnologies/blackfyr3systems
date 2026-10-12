@@ -1320,7 +1320,7 @@ section {
 }
 
 /* =========================================================
-   LAB 07 DATA
+   PAST RESEARCH
 ========================================================= */
 
 .lab-method-strip {
@@ -1877,3 +1877,19 @@ section {
     .stage-g { left: 6%; bottom: 13%; }
 }
 
+
+
+/* =========================================================
+   RESEARCH APPLICATIONS — targeted Project 7 refinement
+========================================================= */
+.research-applications { padding: 110px 7vw; border-top: 1px solid var(--line); }
+.applications-heading { display: grid; grid-template-columns: 1fr 0.8fr; gap: 45px; align-items: end; margin-bottom: 38px; }
+.applications-heading h2 { font-size: clamp(2.2rem, 5vw, 4.5rem); line-height: .98; letter-spacing: -.035em; }
+.applications-heading p, .application-card p { color: var(--muted); line-height: 1.8; }
+.applications-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.application-card { min-height: 185px; padding: 25px; border: 1px solid var(--line); background: linear-gradient(145deg, rgba(15,25,35,.78), rgba(5,9,14,.72)); }
+.application-card span { display: block; color: var(--cyan); font-size: .58rem; letter-spacing: .2em; margin-bottom: 18px; }
+.application-card h3 { font-size: 1.05rem; margin-bottom: 10px; }
+.application-card p { font-size: .88rem; }
+.research-scope { margin-top: 32px; max-width: 950px; color: var(--muted); font-size: .78rem; line-height: 1.8; border-left: 2px solid var(--cyan); padding-left: 18px; }
+@media (max-width: 800px) { .research-applications { padding: 80px 24px; } .applications-heading { grid-template-columns: 1fr; gap: 18px; } .applications-grid { grid-template-columns: 1fr; } }
